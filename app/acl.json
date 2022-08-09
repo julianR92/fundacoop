@@ -1,0 +1,37 @@
+{
+   "Guest" : {
+      "denied" : {},
+      "Home" : ["*"],
+      "InformeCaso" : ["*"],
+      "Usuarios" : ["*"],
+      "Restricted" : ["*"]
+   },
+
+   "LoggedIn" : {
+      "Home":["*"],
+      "denied" : {
+         "Usuarios" : ["login"]
+      },
+      "Usuarios" : ["logout"]
+   },
+
+   "ADMIN":{
+      "denied":{},
+      "Usuarios" : ["*"],
+      "Departamentos" : ["*"],      
+      "Municipios" : ["*"],
+      "Presentaciones" : ["*"],
+      "Bodegas" : ["*"],
+      "Clientes" : ["*"],
+      "Proveedores" : ["*"],
+      "MateriaPrima" : ["*"],
+      "Productos" : ["*"],
+      "Mascotas" : ["*"],
+      "Recetas" : ["*"],
+      "PlanVenta" : ["*"],
+      "Razas" : ["*"],
+      "EntradaMcia" : ["*"],
+      "PlanProduccion" : ["*"]
+      
+   }
+}
