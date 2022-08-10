@@ -3,6 +3,7 @@
       "denied" : {},
       "Home" : ["*"],
       "InformeCaso" : ["*"],
+      "Programas" : ["*"],
       "Usuarios" : ["*"],
       "Restricted" : ["*"]
    },
