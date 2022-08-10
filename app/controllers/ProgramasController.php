@@ -103,9 +103,12 @@ class ProgramasController extends Controller
             $this->jsonResponse($resp);
          }
       }
-
+      
+      $departamentos= Programas::listarDep();     
       $categorias = Categorias::listarCat();
       $tipo_documento = TIPOS_DOCUMENTO;
+
+      $this->view->departamentos = $departamentos;
 
       $this->view->tipo_documento = $tipo_documento;
       $this->view->categorias = $categorias;
@@ -125,6 +128,23 @@ class ProgramasController extends Controller
    public function validarAction(){
       if ($this->request->isPost()) {
           $validar = Programas::validarDoc($this->request->get('documento'));
+          if($validar){
+            $resp = ['success' => true, 'datos'=>$validar];
+            $this->jsonResponse($resp);
+
+          }else{
+            $resp = ['success' => false];
+          }
+         // $resp = ['success' => $this->request->get('documento') ];
+         //    $this->jsonResponse($resp);
+
+      }
+
+   }
+
+   public function validarMunAction(){
+      if ($this->request->isPost()) {
+          $validar = Programas::validarMun($this->request->get('codigo'));
           if($validar){
             $resp = ['success' => true, 'datos'=>$validar];
             $this->jsonResponse($resp);

@@ -4,8 +4,14 @@
 <?php $this->start('footer'); ?>
 <script>
    $(document).ready(function() {
-      $('#categoria').select2({
+      $('#producto_destaca').select2({
          placeholder: 'Seleccione una o varias opciones'
+      });
+      $('#departamento').select2({
+         placeholder: 'Seleccione..'
+      });
+      $('#municipio').select2({
+         placeholder: 'Seleccione..'
       });
    });
 
@@ -57,6 +63,23 @@
             regex: "^[0-9]{7,10}$"
 
          },
+         anios_empresa: {
+            required: true,
+            maxlength: 3,
+            regex: "^[0-9]{1,3}$"
+
+         },
+         personas_empresa: {
+            required: true,
+            maxlength: 10,
+            regex: "^[0-9]{1,10}$"
+
+         },
+         ventas_empresa: {
+            required: true,
+            maxlength: 15,            
+
+         },
          genero: {
             required: true
          },
@@ -72,16 +95,36 @@
             equalTo : "#password",
             minlength: 6
          },
-         rector: {
+         nombre_empresa: {
+            required: true,
+            maxlength: 20,
+         },
+         empresa_formal: {
             required: true
          },
-         categorias: {
+         vision: {
             required: true
          },
-         prueba: {
+         producto_servicio: {
+            required: true,
+            maxlength: 20,
+         },
+         estado_desarrollo:{
             required: true
          },
-         relato: {
+         fuentes_financiacion:{
+            required: true
+         },
+         sector:{
+            required: true
+         },
+         departamento:{
+            required: true
+         },
+         municipio:{
+            required: true
+         },
+         'producto_destaca[]':{
             required: true
          },
          acepta_ter: {
@@ -136,16 +179,51 @@
             equalTo: "las contraseñas no coinciden",
             minlength: "Minimo 6 caracteres"
          },
-         rector: {
+         nombre_empresa: {
+            required: "Este campo es requerido.",
+            maxlength: "Maximo 20 caracteres",
+         },
+         empresa_formal: {
             required: "Este campo es requerido."
          },
-         categorias: {
+         vision: {
             required: "Este campo es requerido."
          },
-         prueba: {
+         producto_servicio: {
             required: "Este campo es requerido."
          },
-         relato: {
+         estado_desarrollo: {
+            required: "Este campo es requerido."
+         },
+         anios_empresa: {
+            required: "Este campo es requerido.",           
+
+         },
+         personas_empresa: {
+            required: "Este campo es requerido.",           
+
+         },
+         ventas_empresa: {
+            required: "Este campo es requerido.",           
+
+         },
+         fuentes_financiacion: {
+            required: "Este campo es requerido.",           
+
+         },
+         sector: {
+            required: "Este campo es requerido.",           
+
+         },
+         departamento: {
+            required: "Este campo es requerido.",           
+
+         },
+         municipio: {
+            required: "Este campo es requerido.",           
+
+         },
+         'producto_destaca[]': {
             required: "Este campo es requerido."
          },
          acepta_ter: {
@@ -199,6 +277,62 @@
          });
       
    }
+
+   function moneyFormat() {
+      let ventas = document.getElementById('ventas_empresa').value;
+      let formatVen =ventas.replace(/[,.$/s]/g, '');
+      document.getElementById('ventas_empresa').value = new Intl.NumberFormat('es-CO',{ style: 'currency', currency: 'COP' }).format(formatVen);      
+      
+   }
+
+   function fillMun(){
+      
+      let codigo = document.getElementById('departamento').value;
+      let form = new FormData();
+      form.append('codigo',codigo);
+      jQuery.ajax({
+            url: '<?= PROOT ?>Programas/validarMun',
+            method: "POST",
+            data: form,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(resp) {               
+               if (resp.success) {
+                  let municipio = $('#municipio');
+                     $("#muncipio").find("option").remove();
+                     $('#municipio').empty();
+                        municipio.append(`<option value="">Seleccione..</option>`);
+                        for (let data of resp.datos) {                           
+                           municipio.append(`<option value="${data.codigo_muni}">${data.municipio}</option>`);
+                        } 
+                 } else {
+                  
+               }
+            }
+         });
+
+   }
+
+   function Numeros(e){
+
+      key = e.keyCode || e.which;
+      tecla = String.fromCharCode(key).toLowerCase();
+      letras = "0123456789";
+      especiales = [8,37];
+      tecla_especial = false
+         for(var i in especiales){
+            if(key == especiales[i]){
+               tecla_especial = true;
+            break;
+               } 
+            }
+                           
+         if(letras.indexOf(tecla)==-1 && !tecla_especial)
+            return false;
+}
+
+
 
    function guardar() {
       if ($("#frm").valid()) {

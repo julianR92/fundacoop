@@ -43,4 +43,32 @@ FROM `datos_personales` as t1 INNER JOIN informe_caso as t2 on t1.id=t2.datos_id
    
 
    }
+   public static function validarMun($codigo){
+      $sql = "SELECT codigo_muni,municipio,codigo_depto FROM municipio WHERE codigo_depto = '{$codigo}'";
+      $db = DB::getInstance();
+      if ($db->query($sql)->count() > 0)
+         return $db->query($sql)->results();
+      else
+         return [];
+   
+
+   }
+
+   public static function listarDep(){
+      $sql = "SELECT * FROM departamento";
+      $db = DB::getInstance(); 
+      $array = [];        
+      if ($db->query($sql)->count() > 0){
+        $data =  $db->query($sql)->results();
+      foreach ($data as $dep) {
+         $array[$dep->codigo_depto] = $dep->departamento;
+      }     
+      return $array;
+      }
+      else{
+         return [];
+      }
+   }
+   
+         
 }

@@ -20,7 +20,7 @@ define('VERSION', '0.1');
 define('LOGO', 'http://localhost/escolar_creo/');
 
 
-define('SITE_TITLE', 'Caso escolar Creo');
+define('SITE_TITLE', 'Programas Premium');
 define('MENU_BRAND', 'Caso escolar Creo');
 
 define('CURRENT_USER_SESSION_NAME', 'escolarkwXeusqldkiIKjehsLQZJFKJ');
