@@ -3,7 +3,7 @@
 use Core\FH; ?>
 <form method="post" action="<?=PROOT?>informeCaso/nuevo" id="frm" role="form" class="container" enctype="multipart/form-data">
    
-   <h2 class="mt-3">Inscripción Programa Gestor</h2>
+   <h2 class="mt-3">Inscripción Programa Club Class </h2>
    <hr>
    <h3 class="mt-3">Datos personales</h3>
    <hr>
@@ -33,26 +33,18 @@ use Core\FH; ?>
    <h3 class="mt-3">Datos Específicos del Programa</h3>
    <hr>
    <div class="row mt-3">
-      <?= FH::inputBlock('text', '<b>Nombre de la Empresa *</b>', 'nombre_empresa', $this->datos_personales->correo_acu, ['class' => 'form-control'], ['class' => 'form-group col-md-4'], []) ?>
-      <?= FH::selectBlock('<b>¿ Su empresa esta creada formalmente? *</b>', 'empresa_formal', $this->informe_caso->prueba, ['SI' => 'SI', 'NO' => 'NO'], ['class' => 'form-control', 'placeholder' => 'seleccione'], ['class' => 'form-group col-md-4'], []) ?>
-      <?= FH::selectBlock('<b>Vision de la empresa o negocio *</b>', 'vision', $this->informe_caso->prueba, ['Que en corto tiempo cubra un mercado local' => 'Que en corto tiempo cubra un mercado local', 'Que en corto tiempo cubra un mercado nacional' => 'Que en corto tiempo cubra un mercado nacional'], ['class' => 'form-control', 'placeholder' => 'seleccione'], ['class' => 'form-group col-md-4'], []) ?>
-      <?= FH::inputBlock('text', '<b>Nombre del producto o servicio *</b>', 'producto_servicio', $this->datos_personales->correo_acu, ['class' => 'form-control'], ['class' => 'form-group col-md-4'], []) ?>
+      <?= FH::inputBlock('text', '<b>Empresa o colegio donde labora*</b>', 'nombre_entidad', $this->datos_personales->correo_acu, ['class' => 'form-control'], ['class' => 'form-group col-md-4'], []) ?>
 
-      <?= FH::selectBlock('<b> Estados del producto o servicio*</b>', 'estado_desarrollo', $this->informe_caso->prueba, ['Es una idea' => 'Es una idea', 'Se encuentra en desarrollo' => 'Se encuentra en desarrollo','Está listo para comercializar'=>'Está listo para comercializar'], ['class' => 'form-control', 'placeholder' => 'seleccione'], ['class' => 'form-group col-md-4'], []) ?>   
-      
-      <?= FH::selectBlock('<b>El producto o servicio se destaca por:*</b>', 'producto_destaca[]', $this->informe_caso->categoria, ['Novedad'=>'Novedad', 'Calidad'=> 'Calidad', 'Precio'=>'Precio', 'Marca'=>'Marca', 'Diseño'=>'Diseño'], ['class' => 'form-control', 'placeHolder' => 'seleccione','multiple'=>'multiple'], ['class' => 'form-group col-md-4'], []) ?>
-      
-      <?= FH::inputBlock('number', '<b>Años de operacion de la empresa</b>', 'anios_empresa', $this->datos_personales->medio_contacto, ['class' => 'form-control','placeholder' =>'Ejemplo : 15'], ['class' => 'form-group col-md-4'], []) ?>
-      
-      <?= FH::inputBlock('number', '<b>¿Cuántas personas trabajan en la empresa?</b>', 'personas_empresa', $this->datos_personales->medio_contacto, ['class' => 'form-control','placeholder' =>'Ejemplo : 30'], ['class' => 'form-group col-md-4'], []) ?>
-      
-      <?= FH::inputBlock('text', '<b>Ventas en el ultimo año</b>', 'ventas_empresa', $this->datos_personales->medio_contacto, ['class' => 'form-control','placeholder' =>'Ejemplo : 100.000.000', 'onchange'=>'moneyFormat()','onkeypress'=>'return Numeros(event)'], ['class' => 'form-group col-md-4'], []) ?>
+      <?= FH::inputBlock('text', '<b>Cargo que desempeña*</b>', 'cargo', $this->datos_personales->correo_acu, ['class' => 'form-control'], ['class' => 'form-group col-md-4'], []) ?>
 
-      <?= FH::selectBlock('<b>Sus fuentes de Financiacion son:*</b>', 'fuentes_financiacion', $this->informe_caso->categoria, ['Recursos propios'=>'Recursos propios', 'Familia y/o amigos'=> 'Familia y/o amigos', 'Recursos públicos'=>'Recursos públicos', 'Crédito bancario'=>'Crédito bancario'], ['class' => 'form-control', 'placeHolder' => 'seleccione'], ['class' => 'form-group col-md-4'], []) ?>
+      <?= FH::inputBlock('text', '<b>Nombre del título de pregrado</b>', 'titulo_pregrado', $this->datos_personales->correo_acu, ['class' => 'form-control'], ['class' => 'form-group col-md-4'], []) ?>
 
-      <?= FH::selectBlock('<b>Sector:*</b>', 'sector', $this->informe_caso->categoria, ['Arte'=>'Arte', 'Transporte  '=> 'Transporte', 'Alimentación'=>'Alimentación', 'Campo'=>'Campo', 'Comercio'=>'Comercio','Construcción'=>'Construcción', 'Educación'=>'Educación', 'Hotelería'=>'Hotelería', 'Ingeniería'=>'Ingeniería ', 'Salud'=>'Salud', 'Tecnología'=>'Tecnología'], ['class' => 'form-control', 'placeHolder' => 'seleccione'], ['class' => 'form-group col-md-4'], []) ?>
-        
-      
+      <?= FH::inputBlock('text', '<b>Nombre del título del último postgrado*</b>', 'titulo_posgrado', $this->datos_personales->correo_acu, ['class' => 'form-control'], ['class' => 'form-group col-md-4'], []) ?>
+
+     
+      <?= FH::selectBlock('<b>Área de conocimiento temático</b>', 'area_conocimiento', $this->informe_caso->prueba, ['Agronomía, Veterinaria y Afines' => 'Agronomía, Veterinaria y Afines', 'Bellas Artes' => 'Bellas Artes','Ciencias de la Educación'=>'Ciencias de la Educación', 'Ciencias de la Salud'=>'Ciencias de la Salud','Ciencias Sociales y Humanas'=>'Ciencias Sociales y Humanas', 'Economía, Admón, Contaduría y Afines'=>'Economía, Admón, Contaduría y Afines', 'Ingeniería, Arquitectura y Afines'=>'Ingeniería, Arquitectura y Afines','Matemáticas y Ciencias Naturales'=>'Matemáticas y Ciencias Naturales', 'Otra'=>'Otra'], ['class' => 'form-control', 'placeholder' => 'seleccione'], ['class' => 'form-group col-md-4'], []) ?>
+                    
+                   
 
       <?= FH::selectBlock('<b>Departamento *</b>', 'departamento', $this->datos_personales->tipo_doc, $this->departamentos, ['class' => 'form-control', 'placeHolder' => 'seleccione', 'onchange' => 'fillMun()'], ['class' => 'form-group col-md-4'], []) ?>
 

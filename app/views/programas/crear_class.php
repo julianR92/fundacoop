@@ -1,5 +1,5 @@
 <?php $this->start('body'); ?>
-<?php $this->partial('programas', 'form'); ?>
+<?php $this->partial('programas', 'form_class'); ?>
 <?php $this->end(); ?>
 <?php $this->start('footer'); ?>
 <script>
@@ -94,19 +94,22 @@
             equalTo : "#password",
             minlength: 6
          },
-         nombre_empresa: {
+         nombre_entidad: {
             required: true,
-            maxlength: 20,
+            maxlength: 30,
          },
-         empresa_formal: {
-            required: true
-         },
-         vision: {
-            required: true
-         },
-         producto_servicio: {
+         cargo: {
             required: true,
-            maxlength: 20,
+            maxlength: 25,
+            regex: '^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ ]{3,25}$'
+         },
+         titulo_pregrado: {
+            maxlength: 30,
+            regex: '^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ ]{3,30}$'
+         },
+         titulo_posgrado: {
+            maxlength: 30,
+            regex: '^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ ]{3,30}$'
          },
          estado_desarrollo:{
             required: true
@@ -178,11 +181,11 @@
             equalTo: "las contraseñas no coinciden",
             minlength: "Minimo 6 caracteres"
          },
-         nombre_empresa: {
+         nombre_entidad: {
             required: "Este campo es requerido.",
-            maxlength: "Maximo 20 caracteres",
+            maxlength: "Maximo 30 caracteres",
          },
-         empresa_formal: {
+         cargo: {
             required: "Este campo es requerido."
          },
          vision: {
