@@ -9,14 +9,14 @@ use Core\Validators\UniqueValidator;
 use Core\H;
 use Core\DB;
 
-class Programas extends Model
+class ProgramasClass extends Model
 {
 
-   public $id, $registro_id, $nombre_empresa, $empresa_formal,$vision, $producto_servicio,$estado_desarrollo,$producto_destaca,$anios_empresa,$personas_empresa,$ventas_empresa,$fuentes_financiacion,$sector,$departamento,
-   $municipio,$estado,$ace_ter,$created_at,$updated_at;
+   public $id, $registro_id, $nombre_entidad, $cargo,$titulo_pregrado, $titulo_posgrado,$departamento,
+   $municipio,$area_conocimiento,$estado,$ace_ter,$created_at,$updated_at;
 
 
-   protected static $_table = 'programa_gestar';
+   protected static $_table = 'programa_class';
 
    const blackList = ['id'];
    
