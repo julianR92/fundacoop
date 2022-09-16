@@ -26,12 +26,12 @@
       rules: {
          nombres: {
             required: true,
-            maxlength: 15,
+            maxlength: 25,
             regex: "^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ ]{3,15}$"
          },
          apellidos: {
             required: true,
-            maxlength: 15,
+            maxlength: 25,
             regex: "^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ ]{3,15}$"
          },
          tipo_doc: {
@@ -340,7 +340,7 @@
       if ($("#frm").valid()) {
          var form = new FormData(jQuery('#frm')[0]);
          jQuery.ajax({
-            url: '<?= PROOT ?>informeCaso/nuevo',
+            url: '<?= PROOT ?>Programas/nuevoClass',
             method: "POST",
             data: form,
             contentType: false,
@@ -349,9 +349,9 @@
             success: function(resp) {
                console.log(resp.success);
                if (resp.success) {
-                  alertMsg('¡ Informe exitoso !', 'El informe ha sido enviado correctamente, en un máximo de 2 días hábiles será reportado a la entidad competente.', 'success', function(confirmed) {
+                  alertMsg('¡ Informe exitoso !', 'Se ha registrado la informacion exitosamente.', 'success', function(confirmed) {
                      if (confirmed)
-                        window.location.href = '<?= PROOT ?>informeCaso/nuevo';
+                        window.location.href = '<?= PROOT ?>Usuarios/login';
                   });
                } else {
                   alertMsg('Proceso fallido!', 'Ha ocurrido un error: ' + resp.error, 'error', function(confirmed) {});
