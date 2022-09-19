@@ -3,7 +3,7 @@
 <div class="form-group">
    <div class="row justify-content-center">
       <div class="col-md-6 mt-1 px-0">
-         <h1 class="pt-5 text-center">PROGRAMAS PREMIUM</h1>
+         <h1 class="pt-5 text-center">PROGRAMAS PREMIUM FUNDACOOP</h1>
          <!-- <img class="img img-fluid rounded" src="<?= PROOT ?>img/index/banner.jpg" alt="bannner"> -->
       </div>
    </div>
@@ -33,21 +33,21 @@
    <section class="hero-section">
   <div class="card-grid">
     <a class="card" href="<?= PROOT ?>Programas/nuevo">
-      <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557177324-56c542165309?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80)"></div>
+      <div class="card__background" style="background-image: url(https://www.fundacoop.org/sitio/wp-content/uploads/2022/09/proyecto-mayor-1.jpg)"></div>
       <div class="card__content">
         <p class="card__category">Programa</p>
-        <h3 class="card__heading">GESTAR</h3>
+        <h3 class="card__heading">PROYECTO MAYOR</h3>
       </div>
     </a>
     <a class="card" href="<?= PROOT ?>Programas/nuevoClass">
-      <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557187666-4fd70cf76254?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+      <div class="card__background" style="background-image: url(https://www.fundacoop.org/sitio/wp-content/uploads/2022/08/club-class.jpg)"></div>
       <div class="card__content">
         <p class="card__category">Programa</p>
         <h3 class="card__heading">CLUB CLASS</h3>
       </div>
     </a>
     <a class="card" href="<?= PROOT ?>Programas/nuevoVida">
-      <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1556680262-9990363a3e6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+      <div class="card__background" style="background-image: url(https://www.fundacoop.org/sitio/wp-content/uploads/2022/08/vida-club.jpg)"></div>
       <div class="card__content">
         <p class="card__category">Programa</p>
         <h3 class="card__heading">VIDA CLUB</h3>
@@ -67,7 +67,7 @@
          <a href="<?= PROOT ?>home/informacion" class="btn btn-success btn-sm-block btn-block">Continuar</a>
       </div> -->
       <div class="col-md-2 mt-md-0 mt-2">
-         <a href="https://www.fundacoop.org/sitio/" class="btn btn-secondary btn-sm-block btn-block">Cancelar</a>
+         <a href="https://www.fundacoop.org/sitio/" class="btn btn-secondary btn-sm-block btn-block">Volver</a>
       </div>
    </div>
 </div>

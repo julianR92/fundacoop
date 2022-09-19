@@ -82,15 +82,19 @@ FROM `datos_personales` as t1 INNER JOIN informe_caso as t2 on t1.id=t2.datos_id
     password_hash = '{$password}',
     updated_at='{$date}'";
    //  H::dnd($sql);
-
-      $db = DB::getInstance();
+   $db = DB::getInstance();
+   $db->query($sql);
+   return $db->query($sql)->lastID();
+     /*
+   
+   $db = DB::getInstance();
       if ($db->query($sql)->count() > 0){
           return $db->query($sql)->lastID();
          
       }else{
          return [];
       }
-
+*/
 
    }
 
@@ -109,6 +113,11 @@ FROM `datos_personales` as t1 INNER JOIN informe_caso as t2 on t1.id=t2.datos_id
       genero = '{$genero}',
       nivel_escolaridad = '{$nivel_escolaridad}',
       tipo_doc = '{$tipo_doc}'";
+
+      $db = DB::getInstance();
+      $db->query($sql);
+      return $db->query($sql)->lastID();
+/*
       $db = DB::getInstance();
       if ($db->query($sql)->count() > 0){
          return $db->query($sql)->lastID();
@@ -116,8 +125,8 @@ FROM `datos_personales` as t1 INNER JOIN informe_caso as t2 on t1.id=t2.datos_id
       }else{
          return [];
 }
-
+*/
    }
-   
+ 
          
 }

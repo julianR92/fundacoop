@@ -12,8 +12,8 @@ use Core\Session;
 
    <title><?= $this->siteTitle(); ?></title>
    <!-- Favicons -->
-   <link href="<?= PROOT ?>img/icono.jpg" rel="icon">
-   <link href="<?= PROOT ?>img/icono.jpg" rel="apple-touch-icon">
+   <link href="<?= PROOT ?>img/favicon.png" rel="icon">
+   <link href="<?= PROOT ?>img/favicon.png" rel="apple-touch-icon">
    <!-- Font Awesome -->
    <link rel="stylesheet" href="<?= PROOT ?>adminlte/plugins/fontawesome-free/css/all.min.css">
    <!-- Ionicons -->

@@ -12,7 +12,7 @@ use Core\Session;
 
    <title><?= $this->siteTitle(); ?></title>
 
-   <link rel="shortcut icon" type="image/x-icon" href="<?= PROOT ?>img/icono.jpg">
+   <link rel="shortcut icon" type="image/x-icon" href="<?= PROOT ?>img/favicon.png">
 
    <link href="<?= PROOT ?>css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 

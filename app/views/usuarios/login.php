@@ -9,10 +9,10 @@ use Core\FH;
       <div class="col rounded" style="padding: 80px 60px 0px;">
          <div class="card">
             <div class="card-body">
-               <h2 class="text-center">Iniciar sesión</h2>
+               <h2 class="text-center">Iniciar sesión en programas premium</h2>
                <form class="m-t" role="form" action="" method="post" onsubmit="event.preventDefault(); validar();" id="frm">
                   <div class="row form-group">
-                     <?= FH::inputBlock('text', 'Usuario', 'usuario', $this->datos->usuario, ['class' => 'form-control', 'placeholder' => 'Digite su usario'], ['class' => 'col-md-12 form-group'], []) ?>
+                     <?= FH::inputBlock('text', 'Número de documento', 'usuario', $this->datos->usuario, ['class' => 'form-control', 'placeholder' => 'Digite su número de cédula'], ['class' => 'col-md-12 form-group'], []) ?>
                      <?= FH::inputBlock('password', 'Contraseña', 'password', $this->datos->password, ['class' => 'form-control', 'placeholder' => 'Digite su contraseña'], ['class' => 'col-md-12 form-group'], []) ?>
                      <div class="col-md-12">
                         <?= FH::submitTag('Iniciar sesión', ['class' => 'btn btn-primary btn-block full-width m-b']) ?>

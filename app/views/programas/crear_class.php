@@ -15,13 +15,13 @@
       });
    });
 
-   $.validator.addMethod("regex",function(value, element, regexp) {
-    var re = new RegExp(regexp);
-    return this.optional(element) || re.test(value);
-  }, "Caracteres no validos.");
+   $.validator.addMethod("regex", function(value, element, regexp) {
+      var re = new RegExp(regexp);
+      return this.optional(element) || re.test(value);
+   }, "Caracteres no validos.");
 
    $("#frm").validate({
-      
+
       lang: 'es',
       rules: {
          nombres: {
@@ -76,7 +76,7 @@
          },
          ventas_empresa: {
             required: true,
-            maxlength: 15,            
+            maxlength: 15,
 
          },
          genero: {
@@ -91,7 +91,7 @@
          },
          password_confirmation: {
             required: true,
-            equalTo : "#password",
+            equalTo: "#password",
             minlength: 6
          },
          nombre_entidad: {
@@ -111,22 +111,22 @@
             maxlength: 30,
             regex: '^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ ]{3,30}$'
          },
-         estado_desarrollo:{
+         estado_desarrollo: {
             required: true
          },
-         fuentes_financiacion:{
+         fuentes_financiacion: {
             required: true
          },
-         sector:{
+         sector: {
             required: true
          },
-         departamento:{
+         departamento: {
             required: true
          },
-         municipio:{
+         municipio: {
             required: true
          },
-         'producto_destaca[]':{
+         'producto_destaca[]': {
             required: true
          },
          ace_ter: {
@@ -164,7 +164,7 @@
          },
          celular: {
             required: "Este campo es requerido.",
-            
+
          },
          genero: {
             required: "Este campo es requerido."
@@ -198,31 +198,31 @@
             required: "Este campo es requerido."
          },
          anios_empresa: {
-            required: "Este campo es requerido.",           
+            required: "Este campo es requerido.",
 
          },
          personas_empresa: {
-            required: "Este campo es requerido.",           
+            required: "Este campo es requerido.",
 
          },
          ventas_empresa: {
-            required: "Este campo es requerido.",           
+            required: "Este campo es requerido.",
 
          },
          fuentes_financiacion: {
-            required: "Este campo es requerido.",           
+            required: "Este campo es requerido.",
 
          },
          sector: {
-            required: "Este campo es requerido.",           
+            required: "Este campo es requerido.",
 
          },
          departamento: {
-            required: "Este campo es requerido.",           
+            required: "Este campo es requerido.",
 
          },
          municipio: {
-            required: "Este campo es requerido.",           
+            required: "Este campo es requerido.",
 
          },
          'producto_destaca[]': {
@@ -234,107 +234,108 @@
       }
    });
 
-   function validarDoc(){
+   function validarDoc() {
       let documento = document.getElementById('documento').value;
       var form = new FormData();
-      form.append('documento',documento);
+      form.append('documento', documento);
       jQuery.ajax({
-            url: '<?= PROOT ?>Programas/validar',
-            method: "POST",
-            data: form,
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function(resp) {
-               // console.log(resp.success);
-               if (resp.success) {
-                  console.log(resp.datos[0].nombres)
-                   document.getElementById('nombres').value = resp.datos[0].nombres;
-                   document.getElementById('apellidos').value = resp.datos[0].apellidos;
-                   document.getElementById('edad').value = resp.datos[0].edad;
-                   document.getElementById('email').value = resp.datos[0].email;
-                   document.getElementById('direccion').value = resp.datos[0].direccion;
-                   document.getElementById('oficina').value = resp.datos[0].oficina;
-                   document.getElementById('celular').value = resp.datos[0].celular;
-                   document.getElementById('genero').value = resp.datos[0].genero;
-                   document.getElementById('nivel_escolaridad').value = resp.datos[0].nivel_escolaridad;
+         url: '<?= PROOT ?>Programas/validar',
+         method: "POST",
+         data: form,
+         contentType: false,
+         cache: false,
+         processData: false,
+         success: function(resp) {
+            // console.log(resp.success);
+            if (resp.success) {
+               console.log(resp.datos[0].nombres)
+               document.getElementById('nombres').value = resp.datos[0].nombres;
+               document.getElementById('apellidos').value = resp.datos[0].apellidos;
+               document.getElementById('edad').value = resp.datos[0].edad;
+               document.getElementById('email').value = resp.datos[0].email;
+               document.getElementById('direccion').value = resp.datos[0].direccion;
+               document.getElementById('oficina').value = resp.datos[0].oficina;
+               document.getElementById('celular').value = resp.datos[0].celular;
+               document.getElementById('genero').value = resp.datos[0].genero;
+               document.getElementById('nivel_escolaridad').value = resp.datos[0].nivel_escolaridad;
 
-                  // alertMsg('¡ Informe exitoso !', 'El informe ha sido enviado correctamente, en un máximo de 2 días hábiles será reportado a la entidad competente.', 'success', function(confirmed) {
-                  //    if (confirmed)
-                  //       window.location.href = '<?= PROOT ?>informeCaso/nuevo';
-                  // });
-               } else {
-                  document.getElementById('nombres').value = "";
-                   document.getElementById('apellidos').value = "";
-                   document.getElementById('edad').value = "";
-                   document.getElementById('email').value = "";
-                   document.getElementById('direccion').value = "";
-                   document.getElementById('oficina').value ="";
-                   document.getElementById('celular').value ="";
-                   document.getElementById('genero').value ="";
-                   document.getElementById('nivel_escolaridad').value = "";
-                  // alertMsg('Proceso fallido!', 'Ha ocurrido un error: ' + resp.error, 'error', function(confirmed) {});
-               }
+               // alertMsg('¡ Informe exitoso !', 'El informe ha sido enviado correctamente, en un máximo de 2 días hábiles será reportado a la entidad competente.', 'success', function(confirmed) {
+               //    if (confirmed)
+               //       window.location.href = '<?= PROOT ?>informeCaso/nuevo';
+               // });
+            } else {
+               document.getElementById('nombres').value = "";
+               document.getElementById('apellidos').value = "";
+               document.getElementById('edad').value = "";
+               document.getElementById('email').value = "";
+               document.getElementById('direccion').value = "";
+               document.getElementById('oficina').value = "";
+               document.getElementById('celular').value = "";
+               document.getElementById('genero').value = "";
+               document.getElementById('nivel_escolaridad').value = "";
+               // alertMsg('Proceso fallido!', 'Ha ocurrido un error: ' + resp.error, 'error', function(confirmed) {});
             }
-         });
-      
+         }
+      });
+
    }
 
    function moneyFormat() {
       let ventas = document.getElementById('ventas_empresa').value;
-      let formatVen =ventas.replace(/[,.$/s]/g, '');
-      document.getElementById('ventas_empresa').value = new Intl.NumberFormat('es-CO',{ style: 'currency', currency: 'COP' }).format(formatVen);      
-      
+      let formatVen = ventas.replace(/[,.$/s]/g, '');
+      document.getElementById('ventas_empresa').value = new Intl.NumberFormat('es-CO', {
+         style: 'currency',
+         currency: 'COP'
+      }).format(formatVen);
+
    }
 
-   function fillMun(){
-      
+   function fillMun() {
+
       let codigo = document.getElementById('departamento').value;
       let form = new FormData();
-      form.append('codigo',codigo);
+      form.append('codigo', codigo);
       jQuery.ajax({
-            url: '<?= PROOT ?>Programas/validarMun',
-            method: "POST",
-            data: form,
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function(resp) {               
-               if (resp.success) {
-                  let municipio = $('#municipio');
-                     $("#muncipio").find("option").remove();
-                     $('#municipio').empty();
-                        municipio.append(`<option value="">Seleccione..</option>`);
-                        for (let data of resp.datos) {                           
-                           municipio.append(`<option value="${data.codigo_muni}">${data.municipio}</option>`);
-                        } 
-                 } else {
-                  
+         url: '<?= PROOT ?>Programas/validarMun',
+         method: "POST",
+         data: form,
+         contentType: false,
+         cache: false,
+         processData: false,
+         success: function(resp) {
+            if (resp.success) {
+               let municipio = $('#municipio');
+               $("#muncipio").find("option").remove();
+               $('#municipio').empty();
+               municipio.append(`<option value="">Seleccione..</option>`);
+               for (let data of resp.datos) {
+                  municipio.append(`<option value="${data.codigo_muni}">${data.municipio}</option>`);
                }
+            } else {
+
             }
-         });
+         }
+      });
 
    }
 
-   function Numeros(e){
+   function Numeros(e) {
 
       key = e.keyCode || e.which;
       tecla = String.fromCharCode(key).toLowerCase();
       letras = "0123456789";
-      especiales = [8,37];
+      especiales = [8, 37];
       tecla_especial = false
-         for(var i in especiales){
-            if(key == especiales[i]){
-               tecla_especial = true;
+      for (var i in especiales) {
+         if (key == especiales[i]) {
+            tecla_especial = true;
             break;
-               } 
-            }
-                           
-         if(letras.indexOf(tecla)==-1 && !tecla_especial)
-            return false;
-}
+         }
+      }
 
-
+      if (letras.indexOf(tecla) == -1 && !tecla_especial)
+         return false;
+   }
 
    function guardar() {
       if ($("#frm").valid()) {
@@ -349,7 +350,7 @@
             success: function(resp) {
                console.log(resp.success);
                if (resp.success) {
-                  alertMsg('¡ Informe exitoso !', 'Se ha registrado la informacion exitosamente.', 'success', function(confirmed) {
+                  alertMsg('¡Registro Exitoso!', 'Por tanto solo $10.000 al mes puedes disfrutar de los beneficios de Proyecto Mayor.', 'success', function(confirmed) {
                      if (confirmed)
                         window.location.href = '<?= PROOT ?>Usuarios/login';
                   });
