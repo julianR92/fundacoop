@@ -341,18 +341,18 @@
       if ($("#frm").valid()) {
          var form = new FormData(jQuery('#frm')[0]);
          jQuery.ajax({
-            url: '<?= PROOT ?>informeCaso/nuevo',
+            url: '<?= PROOT ?>Programas/nuevoVida',
             method: "POST",
             data: form,
             contentType: false,
             cache: false,
             processData: false,
             success: function(resp) {
-               console.log(resp.success);
+               // console.log(resp.success);
                if (resp.success) {
                   alertMsg('¡Registro Exitoso!', 'Por tanto solo $10.000 al mes puedes disfrutar de los beneficios de Proyecto Mayor.', 'success', function(confirmed) {
                      if (confirmed)
-                        window.location.href = '<?= PROOT ?>informeCaso/nuevo';
+                       window.location.href = '<?= PROOT ?>Usuarios/login';
                   });
                } else {
                   alertMsg('Proceso fallido!', 'Ha ocurrido un error: ' + resp.error, 'error', function(confirmed) {});

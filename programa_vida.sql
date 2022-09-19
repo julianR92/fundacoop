@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 11-08-2022 a las 13:37:45
+-- Tiempo de generación: 19-09-2022 a las 21:21:00
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -31,6 +31,7 @@ CREATE TABLE `programa_vida` (
   `id` int(11) NOT NULL,
   `registro_id` int(11) NOT NULL,
   `ruta_documento` varchar(500) DEFAULT NULL,
+  `estado` enum('ENVIADO','ACEPTADO','CANCELADO') DEFAULT NULL COMMENT 'ESTADO DE LA SOLICITUD',
   `ace_ter` varchar(3) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL

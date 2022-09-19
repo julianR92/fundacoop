@@ -8,6 +8,7 @@ use Core\H;
 use App\Models\InformeCaso;
 use App\Models\Programas;
 use App\Models\ProgramasClass;
+use App\Models\ProgramasVida;
 use App\Models\DatosPersonales;
 use App\Models\Categorias;
 use App\Models\Archivos;
@@ -162,76 +163,120 @@ class ProgramasController extends Controller
       // $archivos = new Archivos();
 
       if ($this->request->isPost()) {
-         $datos_personales->assign($this->request->get(), DatosPersonales::blackList);
-         $informe_caso->assign($this->request->get(), InformeCaso::blackList);
+       
+         $password = password_hash($this->request->get('password'), PASSWORD_DEFAULT);
+         $auth_key = base64_encode($this->request->get('documento'));
+         $acl = '[&quot;Invitado&quot;]';
+         $date = date('Y-m-d H:i:s');
+         $usuarios = ProgramasVida::insertUpdateUser($this->request->get('documento'), $this->request->get('email'), $password, $auth_key, $acl, $date);
 
-         $datos_personales->fecha_reg = date('Y-m-d H:i:s');
-         if ($datos_personales->save()) {
-            $informe_caso->datos_id = $datos_personales->id;
-            $informe_caso->fecha_reg = date('Y-m-d H:i:s');
-            $informe_caso->estado = 'PENDIENTE';
-            $categoria = '';
+         if ($usuarios) {
+            $registros =  ProgramasVida::insertUpdateRegister($this->request->get('documento'), $this->request->get('nombres'), $this->request->get('apellidos'), $this->request->get('edad'), $this->request->get('email'), $this->request->get('direccion'), $this->request->get('oficina'), $this->request->get('celular'), $this->request->get('genero'), $this->request->get('nivel_escolaridad'), $this->request->get('tipo_doc'), $usuarios, $date);
+            if ($registros) {
 
-            foreach ($_POST["categoria"] as $cat) {
-               $categoria .= $cat . ', ';
-            }
+               //subir documento
 
-            $categoria = substr_replace($categoria, "", -2);
-            $informe_caso->categoria = $categoria;
-            $informe_caso->save();
-
-            $files = $_FILES['archivo'];
-            $adjuntos = false;
-
-            if ($files['tmp_name'][0] == '') {
-               $adjuntos = false;
-            } else {
-
+               $files = $_FILES['archivo'];
                $uploads = new Uploads($files);
                $uploads->runValidation();
                $imagesErrors = $uploads->validates();
+               $path = 'documentos' . DS . $this->request->get('documento') . DS;
+               $parts = explode('.', $files['name']);
+               $ext = end($parts);
+               $uploadName = $this->request->get('documento').'-'.'formulario-vida'. '.' . $ext;
+               $uploads->upload($path, $uploadName, $files['tmp_name']);
+               
+               
 
-               if (is_array($imagesErrors)) {
-                  $msg = "";
-                  foreach ($imagesErrors as $name => $message) {
-                     $msg .= $message . " ";
-                  }
-                  $informe_caso->addErrorMessage('archivo', trim($msg));
+               $vida = new ProgramasVida();
+               $vida->registro_id = $registros;               
+               $vida->ruta_documento = $path.$uploadName;               
+               $vida->estado = 'ENVIADO';
+               $vida->ace_ter = 'SI';
+               $vida->created_at = $date;
+               $vida->updated_at = $date;
+               if ($vida->save()) {
+                  $resp = ['success' => true];
+                  $this->jsonResponse($resp);
+               } else {
+                  $resp = ['success' => false, 'error' => 'Error al Ingresar el Registro'];
+                  $this->jsonResponse($resp);
                }
-               $adjuntos = true;
+            } else {
+               $resp = ['success' => false, 'error' => 'Error al Ingresar el Registro'];
+               $this->jsonResponse($resp);
             }
-
-            if ($adjuntos) {
-               Archivos::uploadDocumentos($informe_caso->id, $uploads);
-            }
-
-            $mail = new PHPMailer(true);
-            $mail->SMTPDebug = 0;
-            $mail->isSMTP();
-            $mail->Host       = SMTP_HOST;
-            $mail->SMTPAuth   = true;
-            $mail->Username   = SMTP_USERNAME;
-            $mail->Password   = SMTP_PASSWORD;
-            $mail->SMTPSecure = SMTP_SECURE;
-            $mail->Port       = SMTP_PORT;
-
-            $mail->setFrom(SMTP_FROM, SMTP_FROM_NAME);
-            $mail->addAddress(SMTP_FROM);
-
-            $mail->Subject = 'Nueva solicitud radicada';
-            $mail->isHTML(true);
-            $mail->Body    = 'Se ha recibido un nuevo caso No: ' . $informe_caso->id . ', por favor revisar en la plataforma CREO para realizar revisión y gestión del caso.';
-            $mail->send();
-
-
-            $resp = ['success' => true];
-            $this->jsonResponse($resp);
          } else {
-            $resp = ['success' => false, 'error' => $datos_personales->getErrorMessages()];
+            $resp = ['success' => false, 'error' => 'Error al Ingresar el Usuario'];
             $this->jsonResponse($resp);
          }
-      }
 
+         // $datos_personales->fecha_reg = date('Y-m-d H:i:s');
+         // if ($datos_personales->save()) {
+         //    $informe_caso->datos_id = $datos_personales->id;
+         //    $informe_caso->fecha_reg = date('Y-m-d H:i:s');
+         //    $informe_caso->estado = 'PENDIENTE';
+         //    $categoria = '';
+
+         //    foreach ($_POST["categoria"] as $cat) {
+         //       $categoria .= $cat . ', ';
+         //    }
+
+         //    $categoria = substr_replace($categoria, "", -2);
+         //    $informe_caso->categoria = $categoria;
+         //    $informe_caso->save();
+
+         //    $files = $_FILES['archivo'];
+         //    $adjuntos = false;
+
+         //    if ($files['tmp_name'][0] == '') {
+         //       $adjuntos = false;
+         //    } else {
+
+         //       $uploads = new Uploads($files);
+         //       $uploads->runValidation();
+         //       $imagesErrors = $uploads->validates();
+
+         //       if (is_array($imagesErrors)) {
+         //          $msg = "";
+         //          foreach ($imagesErrors as $name => $message) {
+         //             $msg .= $message . " ";
+         //          }
+         //          $informe_caso->addErrorMessage('archivo', trim($msg));
+         //       }
+         //       $adjuntos = true;
+         //    }
+
+         //    if ($adjuntos) {
+         //       Archivos::uploadDocumentos($informe_caso->id, $uploads);
+         //    }
+
+         //    $mail = new PHPMailer(true);
+         //    $mail->SMTPDebug = 0;
+         //    $mail->isSMTP();
+         //    $mail->Host       = SMTP_HOST;
+         //    $mail->SMTPAuth   = true;
+         //    $mail->Username   = SMTP_USERNAME;
+         //    $mail->Password   = SMTP_PASSWORD;
+         //    $mail->SMTPSecure = SMTP_SECURE;
+         //    $mail->Port       = SMTP_PORT;
+
+         //    $mail->setFrom(SMTP_FROM, SMTP_FROM_NAME);
+         //    $mail->addAddress(SMTP_FROM);
+
+         //    $mail->Subject = 'Nueva solicitud radicada';
+         //    $mail->isHTML(true);
+         //    $mail->Body    = 'Se ha recibido un nuevo caso No: ' . $informe_caso->id . ', por favor revisar en la plataforma CREO para realizar revisión y gestión del caso.';
+         //    $mail->send();
+
+
+         //    $resp = ['success' => true];
+         //    $this->jsonResponse($resp);
+         // } else {
+         //    $resp = ['success' => false, 'error' => $datos_personales->getErrorMessages()];
+         //    $this->jsonResponse($resp);
+         // }
+      }
       $departamentos = Programas::listarDep();
       $categorias = Categorias::listarCat();
       $tipo_documento = TIPOS_DOCUMENTO;

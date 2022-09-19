@@ -87,12 +87,14 @@ class Uploads
 
    public static function restructureFiles($files){
       $structured = [];
-      foreach($files['tmp_name'] as $key => $val){
+      if (is_array($files['tmp_name']) || is_object($files['tmp_name'])){         
+         foreach($files['tmp_name'] as $key => $val){
         $structured[] = [
           'tmp_name'=>$files['tmp_name'][$key],'name'=>$files['name'][$key],
           'size'=>$files['size'][$key],'error'=>$files['error'][$key],'type'=>$files['type'][$key]
         ];
       }
+   }
       return $structured;
     }
 }
