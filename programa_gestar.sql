@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 14-08-2022 a las 20:16:50
+-- Tiempo de generación: 20-09-2022 a las 19:42:03
 -- Versión del servidor: 5.7.33
 -- Versión de PHP: 7.4.19
 
@@ -45,6 +45,7 @@ CREATE TABLE `programa_gestar` (
   `municipio` varchar(100) DEFAULT NULL,
   `estado` enum('ENVIADO','ACEPTADO','CANCELADO') DEFAULT NULL,
   `ace_ter` varchar(3) DEFAULT NULL,
+  `documento` varchar(20) DEFAULT NULL COMMENT 'Numero de documento',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -53,10 +54,10 @@ CREATE TABLE `programa_gestar` (
 -- Volcado de datos para la tabla `programa_gestar`
 --
 
-INSERT INTO `programa_gestar` (`id`, `registro_id`, `nombre_empresa`, `empresa_formal`, `vision`, `producto_servicio`, `estado_desarrollo`, `producto_destaca`, `anios_empresa`, `personas_empresa`, `ventas_empresa`, `fuentes_financiacion`, `sector`, `departamento`, `municipio`, `estado`, `ace_ter`, `created_at`, `updated_at`) VALUES
-(1, 2061, 'EMPRESA 1', 'SI', 'Que en corto tiempo cubra un mercado local', 'OBLEAS PLUS', 'Se encuentra en desarrollo', 'Calidad,Marca', 30, 200, '$ 40.000.000,00', 'Familia y/o amigos', 'Alimentación', '68', '68001', 'ENVIADO', 'SI', '2022-08-14 14:57:59', '2022-08-14 14:57:59'),
-(2, 2073, 'empresa 2', 'NO', 'Que en corto tiempo cubra un mercado nacional', 'OBLEAS PLUS plus', 'Se encuentra en desarrollo', 'Precio,Marca', 12, 12, '$ 400.000,00', 'Familia y/o amigos', 'Transporte', '05', '05002', 'ENVIADO', 'SI', '2022-08-14 15:01:24', '2022-08-14 15:01:24'),
-(3, 2075, 'DATINI', 'SI', 'Que en corto tiempo cubra un mercado nacional', 'TELAS', 'Se encuentra en desarrollo', 'Precio', 25, 25, '$ 400.000,00', 'Crédito bancario', 'Ingeniería', '11', '11001', 'ENVIADO', 'SI', '2022-08-14 15:12:48', '2022-08-14 15:12:48');
+INSERT INTO `programa_gestar` (`id`, `registro_id`, `nombre_empresa`, `empresa_formal`, `vision`, `producto_servicio`, `estado_desarrollo`, `producto_destaca`, `anios_empresa`, `personas_empresa`, `ventas_empresa`, `fuentes_financiacion`, `sector`, `departamento`, `municipio`, `estado`, `ace_ter`, `documento`, `created_at`, `updated_at`) VALUES
+(1, 2061, 'EMPRESA 1', 'SI', 'Que en corto tiempo cubra un mercado local', 'OBLEAS PLUS', 'Se encuentra en desarrollo', 'Calidad,Marca', 30, 200, '$ 40.000.000,00', 'Familia y/o amigos', 'Alimentación', '68', '68001', 'ENVIADO', 'SI', '1098719559', '2022-08-14 14:57:59', '2022-08-14 14:57:59'),
+(2, 2073, 'empresa 2', 'NO', 'Que en corto tiempo cubra un mercado nacional', 'OBLEAS PLUS plus', 'Se encuentra en desarrollo', 'Precio,Marca', 12, 12, '$ 400.000,00', 'Familia y/o amigos', 'Transporte', '05', '05002', 'ENVIADO', 'SI', NULL, '2022-08-14 15:01:24', '2022-08-14 15:01:24'),
+(3, 2075, 'DATINI', 'SI', 'Que en corto tiempo cubra un mercado nacional', 'TELAS', 'Se encuentra en desarrollo', 'Precio', 25, 25, '$ 400.000,00', 'Crédito bancario', 'Ingeniería', '11', '11001', 'ENVIADO', 'SI', NULL, '2022-08-14 15:12:48', '2022-08-14 15:12:48');
 
 --
 -- Índices para tablas volcadas

@@ -251,7 +251,8 @@
                console.log(resp.datos[0].nombres)
                document.getElementById('nombres').value = resp.datos[0].nombres;
                document.getElementById('apellidos').value = resp.datos[0].apellidos;
-               document.getElementById('edad').value = resp.datos[0].edad;
+               document.getElementById('tipo_doc').value = resp.datos[0].tipo_doc;
+               document.getElementById('edad').value = resp.datos[0].edad;               
                document.getElementById('email').value = resp.datos[0].email;
                document.getElementById('direccion').value = resp.datos[0].direccion;
                document.getElementById('oficina').value = resp.datos[0].oficina;
@@ -266,6 +267,7 @@
             } else {
                document.getElementById('nombres').value = "";
                document.getElementById('apellidos').value = "";
+               document.getElementById('tipo_doc').value = "";
                document.getElementById('edad').value = "";
                document.getElementById('email').value = "";
                document.getElementById('direccion').value = "";
@@ -355,7 +357,10 @@
                         window.location.href = '<?= PROOT ?>Usuarios/login';
                   });
                } else {
-                  alertMsg('Proceso fallido!', 'Ha ocurrido un error: ' + resp.error, 'error', function(confirmed) {});
+                  alertMsg('Proceso fallido!', 'Ha ocurrido un error: ' + resp.error, 'error', function(confirmed) {
+                     if (confirmed)
+                      if(resp.url) window.location.href = '/';
+                  });
                }
             }
          });

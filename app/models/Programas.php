@@ -13,7 +13,7 @@ class Programas extends Model
 {
 
    public $id, $registro_id, $nombre_empresa, $empresa_formal, $vision, $producto_servicio, $estado_desarrollo, $producto_destaca, $anios_empresa, $personas_empresa, $ventas_empresa, $fuentes_financiacion, $sector, $departamento,
-      $municipio, $estado, $ace_ter, $created_at, $updated_at;
+      $municipio, $estado,$documento,$ace_ter, $created_at, $updated_at;
 
 
    protected static $_table = 'programa_gestar';
@@ -36,7 +36,7 @@ FROM `datos_personales` as t1 INNER JOIN informe_caso as t2 on t1.id=t2.datos_id
 
    public static function validarDoc($documento)
    {
-      $sql = "SELECT r.nombres,r.apellidos, r.edad, r.direccion,r.email, r.celular, r.oficina, r.genero, r.nivel_escolaridad FROM registro as r INNER JOIN user as u ON r.user_id=u.id WHERE r.documento = '{$documento}'";
+      $sql = "SELECT r.nombres,r.apellidos, r.edad, r.direccion,r.email, r.celular, r.oficina, r.genero, r.nivel_escolaridad, r.tipo_doc FROM registro as r INNER JOIN user as u ON r.user_id=u.id WHERE r.documento = '{$documento}'";
 
       $db = DB::getInstance();
       if ($db->query($sql)->count() > 0)
@@ -118,5 +118,15 @@ FROM `datos_personales` as t1 INNER JOIN informe_caso as t2 on t1.id=t2.datos_id
       // } else {
       //    return [];
       // }
+   }
+
+   public static function validacionDocumento($documento){
+      $sql = "SELECT documento FROM programa_gestar WHERE documento = '{$documento}'";
+      $db = DB::getInstance();
+      if ($db->query($sql)->count() > 0) {
+         return true;
+      } else {
+         return false;
+      }
    }
 }

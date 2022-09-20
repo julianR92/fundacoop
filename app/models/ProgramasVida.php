@@ -12,7 +12,7 @@ use Core\DB;
 class ProgramasVida extends Model
 {
 
-   public $id, $registro_id, $ruta_documento,$estado,$ace_ter,$created_at,$updated_at;
+   public $id, $registro_id, $ruta_documento,$documento,$estado,$ace_ter,$created_at,$updated_at;
 
 
    protected static $_table = 'programa_vida';
@@ -125,6 +125,16 @@ FROM `datos_personales` as t1 INNER JOIN informe_caso as t2 on t1.id=t2.datos_id
          return [];
 }
 */
+   }
+
+   public static function validacionDocumento($documento){
+      $sql = "SELECT documento FROM programa_vida WHERE documento = '{$documento}'";
+      $db = DB::getInstance();
+      if ($db->query($sql)->count() > 0) {
+         return true;
+      } else {
+         return false;
+      }
    }
  
          

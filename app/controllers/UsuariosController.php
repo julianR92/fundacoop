@@ -40,7 +40,7 @@ class UsuariosController extends Controller
          else {
 
             $this->view->datos = $loginModel;
-            $this->view->setLayout('login');
+            $this->view->setLayout('index');
             $this->view->render('usuarios/login');
          }
       }

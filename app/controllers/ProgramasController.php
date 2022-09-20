@@ -37,6 +37,15 @@ class ProgramasController extends Controller
       // $archivos = new Archivos();
 
       if ($this->request->isPost()) {
+        
+         //validacion numero de documentos 
+           $validacion = Programas::validacionDocumento($this->request->get('documento'));
+           if($validacion){
+            $resp = ['success' => false, 'error' => 'El usuario con documento: '.$this->request->get('documento').' ya se encuentra registrado en este programa','url'=> true];
+            $this->jsonResponse($resp);
+           }
+
+         H::dnd('asdasdasdas');
          $password = password_hash($this->request->get('password'), PASSWORD_DEFAULT);
          $auth_key = base64_encode($this->request->get('documento'));
          $acl = '[&quot;Invitado&quot;]';
@@ -63,21 +72,22 @@ class ProgramasController extends Controller
                $gestar->municipio = $this->request->get('municipio');
                $gestar->estado = 'ENVIADO';
                $gestar->ace_ter = 'SI';
+               $gestar->documento = $this->request->get('documento');
                $gestar->created_at = $date;
                $gestar->updated_at = $date;
                if ($gestar->save()) {
-                  $resp = ['success' => true];
+                  $resp = ['success' => true,'url'=> false];
                   $this->jsonResponse($resp);
                } else {
-                  $resp = ['success' => false, 'error' => 'Error al Ingresar el Registro gestar'];
+                  $resp = ['success' => false, 'error' => 'Error al Ingresar el Registro gestar','url'=>false];
                   $this->jsonResponse($resp);
                }
             } else {
-               $resp = ['success' => false, 'error' => 'Error al Ingresar el Registro'];
+               $resp = ['success' => false, 'error' => 'Error al Ingresar el Registro' ,'url'=>false];
                $this->jsonResponse($resp);
             }
          } else {
-            $resp = ['success' => false, 'error' => 'Error al Ingresar el Usuario'];
+            $resp = ['success' => false, 'error' => 'Error al Ingresar el Usuario','url'=>false];
             $this->jsonResponse($resp);
          }
       }
@@ -102,6 +112,13 @@ class ProgramasController extends Controller
       // $archivos = new Archivos();
 
       if ($this->request->isPost()) {
+          
+         $validacion = ProgramasClass::validacionDocumento($this->request->get('documento'));
+           if($validacion){
+            $resp = ['success' => false, 'error' => 'El usuario con documento: '.$this->request->get('documento').' ya se encuentra registrado en este programa','url'=> true];
+            $this->jsonResponse($resp);
+           }
+
          $password = password_hash($this->request->get('password'), PASSWORD_DEFAULT);
          $auth_key = base64_encode($this->request->get('documento'));
          $acl = '[&quot;Invitado&quot;]';
@@ -123,21 +140,22 @@ class ProgramasController extends Controller
                $class->municipio = $this->request->get('municipio');
                $class->estado = 'ENVIADO';
                $class->ace_ter = 'SI';
+               $class->documento = $this->request->get('documento');
                $class->created_at = $date;
                $class->updated_at = $date;
                if ($class->save()) {
-                  $resp = ['success' => true];
+                  $resp = ['success' => true, 'url'=> false];
                   $this->jsonResponse($resp);
                } else {
-                  $resp = ['success' => false, 'error' => 'Error al Ingresar el Registro'];
+                  $resp = ['success' => false, 'error' => 'Error al Ingresar el Registro','url'=> false];
                   $this->jsonResponse($resp);
                }
             } else {
-               $resp = ['success' => false, 'error' => 'Error al Ingresar el Registro'];
+               $resp = ['success' => false, 'error' => 'Error al Ingresar el Registro','url'=> false];
                $this->jsonResponse($resp);
             }
          } else {
-            $resp = ['success' => false, 'error' => 'Error al Ingresar el Usuario'];
+            $resp = ['success' => false, 'error' => 'Error al Ingresar el Usuario', 'url'=> false];
             $this->jsonResponse($resp);
          }
       }
@@ -163,6 +181,12 @@ class ProgramasController extends Controller
       // $archivos = new Archivos();
 
       if ($this->request->isPost()) {
+
+         $validacion = ProgramasVida::validacionDocumento($this->request->get('documento'));
+           if($validacion){
+            $resp = ['success' => false, 'error' => 'El usuario con documento: '.$this->request->get('documento').' ya se encuentra registrado en este programa','url'=> true];
+            $this->jsonResponse($resp);
+           }
        
          $password = password_hash($this->request->get('password'), PASSWORD_DEFAULT);
          $auth_key = base64_encode($this->request->get('documento'));
@@ -193,21 +217,22 @@ class ProgramasController extends Controller
                $vida->ruta_documento = $path.$uploadName;               
                $vida->estado = 'ENVIADO';
                $vida->ace_ter = 'SI';
+               $vida->documento = $this->request->get('documento');
                $vida->created_at = $date;
                $vida->updated_at = $date;
                if ($vida->save()) {
-                  $resp = ['success' => true];
+                  $resp = ['success' => true, 'url'=> true];
                   $this->jsonResponse($resp);
                } else {
-                  $resp = ['success' => false, 'error' => 'Error al Ingresar el Registro'];
+                  $resp = ['success' => false, 'error' => 'Error al Ingresar el Registro','url'=> true];
                   $this->jsonResponse($resp);
                }
             } else {
-               $resp = ['success' => false, 'error' => 'Error al Ingresar el Registro'];
+               $resp = ['success' => false, 'error' => 'Error al Ingresar el Registro','url'=> true];
                $this->jsonResponse($resp);
             }
          } else {
-            $resp = ['success' => false, 'error' => 'Error al Ingresar el Usuario'];
+            $resp = ['success' => false, 'error' => 'Error al Ingresar el Usuario','url'=> true];
             $this->jsonResponse($resp);
          }
 
