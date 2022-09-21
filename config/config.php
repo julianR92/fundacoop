@@ -44,7 +44,7 @@ define(
 define("SMTP_HOST", "mail.fundacoop.org");
 define('SMTP_PORT', 587);
 define('SMTP_SECURE', 'tls');
-define("SMTP_USERNAME", "creo@fundacoop.org");
+define("SMTP_USERNAME", "info@fundacoop.org");
 define("SMTP_PASSWORD", "Informacion30*");
-define("SMTP_FROM", "creo@fundacoop.org");
-define("SMTP_FROM_NAME", utf8_decode("Sistema de Información Escolar"));
+define("SMTP_FROM", "info@fundacoop.org");
+define("SMTP_FROM_NAME", utf8_decode("Sistema de Premium Fundacoop"));

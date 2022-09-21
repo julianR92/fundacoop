@@ -12,6 +12,8 @@ use Core\Cookie;
 use Core\DB;
 use Core\H;
 
+
+
 class Usuarios extends Model
 
 {
@@ -76,6 +78,36 @@ class Usuarios extends Model
       if (empty($this->acl)) return [];
       return json_decode($this->acl, true);
    }
+
+   public static function updateToken($id, $token){
+    
+      $sql = "UPDATE user SET password_reset_token = '{$token}' WHERE id = {$id}";
+      $db = DB::getInstance();
+      if ($db->query($sql)->count() > 0) {
+         return true;
+      } else {
+         return false;
+      }
+
+   }
+   public static function updatePassword($username, $password,$auth_key){
+       
+      $date = date('Y-m-d H:i:s');
+      $sql = "UPDATE user SET password_reset_token = '' , 
+                              password_hash = '{$password}',
+                              auth_key = '{$auth_key}',
+                              updated_at = '{$date}'
+                               WHERE username = '{$username}'";
+    
+      $db = DB::getInstance();
+      if ($db->query($sql)->count() > 0) {
+         return true;
+      } else {
+         return false;
+      }
+
+   }
+
 
    // public static function validarUsuario($usuario)
    // {

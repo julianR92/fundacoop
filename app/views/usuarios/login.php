@@ -80,10 +80,13 @@ use Core\FH;
                <h4 class="text-center">Inicio de sesion Programas Premium</h2>
                <form class="m-t" role="form" action="" method="post" onsubmit="event.preventDefault(); validar();" id="frm">
                   <div class="row form-group">
-                     <?= FH::inputBlock('text', 'Número de documento', 'usuario', $this->datos->usuario, ['class' => 'form-control', 'placeholder' => 'Digite su número de cédula'], ['class' => 'col-md-12 form-group'], []) ?>
+                     <?= FH::inputBlock('text', 'Número de Cedula', 'usuario', $this->datos->usuario, ['class' => 'form-control', 'placeholder' => 'Digite su número de cédula'], ['class' => 'col-md-12 form-group'], []) ?>
                      <?= FH::inputBlock('password', 'Contraseña', 'password', $this->datos->password, ['class' => 'form-control', 'placeholder' => 'Digite su contraseña'], ['class' => 'col-md-12 form-group'], []) ?>
                      <div class="col-md-12">
                         <?= FH::submitTag('Iniciar sesión', ['class' => 'btn btn-primary btn-block full-width m-b']) ?>
+                     </div>
+                     <div class="col-md-12 float-left">
+                        <a class="btn btn-link float-left pl-0" href="<?= PROOT ?>Usuarios/recoverPassword">¿Olvidaste tu contraseña?</a>
                      </div>
                   </div>
                </form>
